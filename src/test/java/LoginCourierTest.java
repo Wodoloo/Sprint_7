@@ -3,6 +3,7 @@ import io.qameta.allure.internal.shadowed.jackson.core.JsonProcessingException;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import ru.praktikum.courier.Courier;
+import ru.praktikum.courier.CourierData;
 
 import ru.praktikum.courier.CourierChecking;
 import ru.praktikum.courier.CourierClient;
@@ -14,8 +15,8 @@ public class LoginCourierTest {
     private final CourierClient client = new CourierClient();
     private final CourierChecking checks = new CourierChecking();
     private final CourierGenerator generator = new CourierGenerator();
+    private final CourierData data = new CourierData();
     private int courierId;
-
 
 
     @Test
@@ -25,7 +26,7 @@ public class LoginCourierTest {
             "успешный запрос возвращает id.")
 
      public void loginCourier() throws JsonProcessingException {
-        Courier courier = generator.signInData();
+        Courier courier = data.signInData();
         client.createCourier(courier);
 
         Response responseId = client.loginCourier(courier);
@@ -41,7 +42,7 @@ public class LoginCourierTest {
     @Description("Если какого-то поля нет, запрос возвращает ошибку")
 
     public void loginWithoutPassword(){
-        Courier courier = generator.loginData();
+        Courier courier = data.loginData();
         courier.setPassword("");
         Response response = client.loginCourier(courier);
         checks.loginWithoutPasswordFailed(response);
@@ -53,7 +54,7 @@ public class LoginCourierTest {
             "если авторизоваться под несуществующим пользователем, запрос возвращает ошибку")
 
     public void wrongLoginCourier() {
-        Courier courier = generator.loginData();
+        Courier courier = data.loginData();
         courier.setLogin("jane_a");
         Response response = client.loginCourier(courier);
         checks.loginFailed(response);
@@ -64,7 +65,7 @@ public class LoginCourierTest {
     @Description("система вернёт ошибку, если неправильно указать пароль")
 
     public void wrongPasswordCourier() {
-        Courier courier = generator.loginData();
+        Courier courier = data.loginData();
         courier.setPassword("1234");
         Response response = client.loginCourier(courier);
         checks.loginFailed(response);
