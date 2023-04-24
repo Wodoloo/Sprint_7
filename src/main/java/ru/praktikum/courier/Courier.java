@@ -4,6 +4,8 @@ package ru.praktikum.courier;
         private String login;
         private String password;
         private String firstName;
+        private int id;
+
 
         public Courier(String login, String password){
             this.login = login;
@@ -15,6 +17,10 @@ package ru.praktikum.courier;
             this.password = password;
             this.firstName = firstName;
         }
+        public Courier(int id) {
+            this.id = id;
+        }
+
         public void setLogin(String login) {
             this.login = login;
         }
@@ -26,5 +32,16 @@ package ru.praktikum.courier;
         public void setFirstName(String firstName) {
             this.firstName = firstName;
         }
+
+        public int getId() {
+            return id;
+        }
+        public void setId(int id) {
+            this.id = id;
+        }
     }
+
+
+
+
 

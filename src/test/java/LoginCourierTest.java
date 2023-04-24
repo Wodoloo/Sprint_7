@@ -1,7 +1,9 @@
 import io.qameta.allure.Description;
+import io.qameta.allure.internal.shadowed.jackson.core.JsonProcessingException;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import ru.praktikum.courier.Courier;
+
 import ru.praktikum.courier.CourierChecking;
 import ru.praktikum.courier.CourierClient;
 import ru.praktikum.courier.CourierGenerator;
@@ -14,13 +16,15 @@ public class LoginCourierTest {
     private final CourierGenerator generator = new CourierGenerator();
     private int courierId;
 
+
+
     @Test
     @DisplayName("Courier login")
     @Description("курьер может авторизоваться;" +
             "для авторизации нужно передать все обязательные поля;" +
             "успешный запрос возвращает id.")
 
-    public void loginCourier(){
+     public void loginCourier() throws JsonProcessingException {
         Courier courier = generator.signInData();
         client.createCourier(courier);
 
@@ -31,6 +35,7 @@ public class LoginCourierTest {
         Response responseDelete = client.deleteCourier(courierId);
         checks.deleteSuccessfully(responseDelete);
     }
+
     @Test
     @DisplayName("Login without password")
     @Description("Если какого-то поля нет, запрос возвращает ошибку")
