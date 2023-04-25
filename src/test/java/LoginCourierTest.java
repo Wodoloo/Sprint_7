@@ -14,7 +14,6 @@ public class LoginCourierTest {
 
     private final CourierClient client = new CourierClient();
     private final CourierChecking checks = new CourierChecking();
-    private final CourierGenerator generator = new CourierGenerator();
     private final CourierData data = new CourierData();
     private int courierId;
 
@@ -50,7 +49,7 @@ public class LoginCourierTest {
 
     @Test
     @DisplayName("Wrong login")
-    @Description("система вернёт ошибку, если неправильно указать логин;" +
+    @Description("Система вернёт ошибку, если неправильно указать логин;" +
             "если авторизоваться под несуществующим пользователем, запрос возвращает ошибку")
 
     public void wrongLoginCourier() {
@@ -62,7 +61,7 @@ public class LoginCourierTest {
 
     @Test
     @DisplayName("Wrong password")
-    @Description("система вернёт ошибку, если неправильно указать пароль")
+    @Description("Система вернёт ошибку, если неправильно указать пароль")
 
     public void wrongPasswordCourier() {
         Courier courier = data.loginData();
