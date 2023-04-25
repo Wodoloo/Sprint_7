@@ -1,3 +1,4 @@
+
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
@@ -47,7 +48,7 @@ public class CreateOrderTest {
         };
     }
 
-    @Test
+   @Test
     @DisplayName("Creation order")
     @Description( "можно указать один из цветов — BLACK или GREY; " +
             "можно  не указывать цвет; " +
